@@ -1,75 +1,25 @@
-# React + TypeScript + Vite
+# Task Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+გუნდური პროექტი შექმნილია React-ისა და TypeScript-ის გამოყენებით (Vite გარემოში). პროექტი წარმოადგენს დავალებების მართვისა და დროის აღრიცხვის ერთიან სისტემას (Dashboard), რომელიც აერთიანებს ორ ძირითად დამოუკიდებელ მოდულს: Kanban Task Board-სა და Time Tracker-ს.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 👥 გუნდის წევრები და როლები
 
-## React Compiler
+* **ლუკა ხარაიშვილი (სტუდენტი 1 - გუნდის ლიდერი):**
+  * **მოდული:** დავალებების დაფა (Kanban Board)
+  * **Branch:** `feature/task-board`
+  * **პასუხისმგებლობა:** Kanban სვეტების (`TaskColumn`), ბარათების (`TaskCard`) და მთლიანი დაფის განლაგების (`BoardLayout`) აწყობა. მონაცემების შენახვა LocalStorage-ში Custom Hook-ით (`useLocalStorageTask`), პროგრესის გამოთვლა (`useMemo`) და სათაურის დინამიური ცვლილება (`useEffect`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **ლუკა მეკოკიშვილი (სტუდენტი 2):**
+  * **მოდული:** დროის ტრეკერი და ტაიმერი (Time Tracker)
+  * **Branch:** `feature/time-tracker`
+  * **პასუხისმგებლობა:** დროის ათვლის ლოგიკა Custom Hook-ით (`useTimer`), სამართავი პანელის (`TimerControls`) და კონტეინერის (`TrackerContainer`) შექმნა. ტაიმერის დაწყება, პაუზა, განულება და მუშაობა `useRef`/`useCallback` ჰუკებით.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 ფუნქციონალი
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+1. **Kanban დაფა:**
+   - დავალებების შექმნა, წაშლა და სტატუსების ცვლილება (`To Do`, `In Progress`, `Done`).
+   - ძებნის/ფილტრაციის ფუნქციონალი დასახ
