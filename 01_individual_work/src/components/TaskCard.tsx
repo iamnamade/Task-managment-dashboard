@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Task } from '../types/task';
+import type { Task } from '../types/task';
 
 interface TaskCardProps {
   task: Task;
@@ -19,7 +19,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onStatusChange, onDele
     }}>
       <h4 style={{ margin: '0 0 5px 0' }}>{task.title}</h4>
       
-      {/* პირობითი რენდერი: ვადაგადაცილებული დავალების ჩვენება */}
       {task.isOverdue && (
         <span style={{ color: 'red', fontSize: '12px', fontWeight: 'bold' }}>
           ვადაგადაცილებულია!
@@ -45,12 +44,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onStatusChange, onDele
 };
 
 TaskCard.propTypes = {
-  task: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    status: PropTypes.oneOf(['To Do', 'In Progress', 'Done']).isRequired,
-    isOverdue: PropTypes.bool
-  }).isRequired as unknown as PropTypes.Validator<Task>,
+  task: PropTypes.any.isRequired,
   onStatusChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired
 };

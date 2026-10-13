@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Task } from '../types/task';
+import type { Task } from '../types/task';
 
 export const useLocalStorageTask = (key: string, initialValue: Task[]) => {
   const [tasks, setTasks] = useState<Task[]>(() => {

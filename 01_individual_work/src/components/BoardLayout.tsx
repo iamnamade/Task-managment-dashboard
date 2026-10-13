@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Task } from '../types/task';
+import type { Task } from '../types/task';
 import { TaskColumn } from './TaskColumn';
 import { useLocalStorageTask } from '../hooks/useLocalStorageTask';
 
@@ -15,19 +15,14 @@ export const BoardLayout: React.FC = () => {
   const [search, setSearch] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // useEffect: document.title-ის განახლება დავალებების რაოდენობით
   useEffect(() => {
     document.title = `დავალებები (${tasks.length})`;
   }, [tasks]);
 
-  // useRef: ინპუტზე ავტომატური ფოკუსი
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    inputRef.current?.focus();
   }, []);
 
-  // useMemo: შესრულებული დავალებების პროცენტის დათვლა
   const completedPercentage = useMemo(() => {
     if (tasks.length === 0) return 0;
     const completed = tasks.filter((t) => t.status === 'Done').length;
@@ -65,7 +60,6 @@ export const BoardLayout: React.FC = () => {
       <h2>დავალებების დაფა (Kanban)</h2>
       <p>შესრულების პროგრესი: <strong>{completedPercentage}%</strong></p>
 
-      {/* ახალი დავალების დამატება */}
       <form onSubmit={handleAddTask} style={{ marginBottom: '15px' }}>
         <input
           ref={inputRef}
@@ -78,7 +72,6 @@ export const BoardLayout: React.FC = () => {
         <button type="submit" style={{ padding: '6px 12px' }}>დამატება</button>
       </form>
 
-      {/* ძებნის ველი */}
       <input
         type="text"
         placeholder="ძებნა სათაურით..."

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Task } from '../types/task';
+import type { Task } from '../types/task';
 import { TaskCard } from './TaskCard';
 
 interface TaskColumnProps {
